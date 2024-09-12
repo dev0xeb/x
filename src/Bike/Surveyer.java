@@ -1,10 +1,14 @@
 package Bike;
 
 public class Surveyer {
-    private final String[] TOPICS = {"Education", "Paternity Fraud", "Marternity issues", "Miracle", "Mystery"};
+    private final Issue[] TOPICS;
     private final int[][] RESPONSES = new int[5][10];
-    public String[] getTopics() {
+    public Issue[] getTopics() {
         return TOPICS ;
+    }
+
+    public Surveyer(){
+        TOPICS = new Issue[10];
     }
 
     public int[][] getResponses() {

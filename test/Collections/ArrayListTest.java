@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-public class ArrayListTest {
+public class  ArrayListTest {
     Arraylist arrayList;
     @BeforeEach
     public void startEveryTest_With_This() {

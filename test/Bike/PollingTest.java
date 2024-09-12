@@ -15,13 +15,13 @@ public class PollingTest {
     }
     @Test
     public void testThatSurveyHasFiveIssues(){
-        String[] topics = surveyer.getTopics();
+        Issue[] topics = surveyer.getTopics();
         assertEquals(5, topics.length);
     }
     @Test
     public void testThatTHeSurveyIssuesExist(){
-        String[] topics = surveyer.getTopics();
-        for(String topic : topics){
+        Issue[] topics = surveyer.getTopics();
+        for(Issue topic : topics){
             assertNotNull(topic);
 //            assertEquals(topic.getClass(), String.class);
         }
