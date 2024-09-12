@@ -28,7 +28,7 @@ public class Library {
                 return book.getTitle();
             }
         }
-        return null;
+        throw new IllegalArgumentException("Book not found");
     }
 
     public ArrayList<Book> searchByAuthor(String author){

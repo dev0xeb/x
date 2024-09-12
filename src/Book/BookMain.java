@@ -18,6 +18,7 @@ public class BookMain {
         lib.addBook(book3);
         Book book4 = new Book("The Great Gatsby", "F. Scoot Fitzgerald", "4", true);
         lib.addBook(book4);
+        Book book5 = new Book("New Book", "Harper Lee", "5", true);
         showMenu();
     }
 
@@ -47,27 +48,14 @@ public class BookMain {
         switch (choice) {
             case 1:
                 allBooks();
-                showMenu();
             case 2:
                 searchByTitle();
-//                System.out.print("Enter title: ");
-//                String title = input.next();
-//                lib.searchByTitle(title);
-//                showMenu();
             case 3:
-//                System.out.print("Enter author: ");
-//                String author = input.next();
                 searchByAuthor();
-//                showMenu();
             case 4:
-//                System.out.print("Enter ISBN: ");
-//                String ISBN = input.next();
                 searchByISBN();
-//                showMenu();
             case 5:
                 exit();
-//                showMenu();
-
         }
     }
 
@@ -95,6 +83,8 @@ public class BookMain {
         System.out.print("Enter ISBN: ");
         String ISBN = input.next();
         lib.searchByISBN(ISBN);
+        book = new Book(ISBN);
+        System.out.printf("The book %s is avaialable.\n",book.getISBN());
         showMenu();
     }
 
