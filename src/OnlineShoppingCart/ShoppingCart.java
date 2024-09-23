@@ -1,4 +1,4 @@
-package OnlineShoopingCart;
+package OnlineShoppingCart;
 
 import java.util.ArrayList;
 
@@ -17,8 +17,8 @@ public class ShoppingCart {
         }
         Items.add(new CartItem(quantity, product));
     }
-    public void removeItem(Product sku) {
-        Items.removeIf(item -> item.getProduct().getSku().equals(sku.getSku()));
+    public void removeItem(String sku) {
+        Items.removeIf(item -> item.getProduct().getSku().equals(sku));
     }
     public float getTotalPrice() {
         return Items.stream().mapToInt(CartItem::getQuantity).sum();

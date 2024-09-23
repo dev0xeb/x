@@ -1,4 +1,4 @@
-package OnlineShoopingCart;
+package OnlineShoppingCart;
 
 public class Product {
     private String name;

@@ -1,4 +1,4 @@
-package OnlineShoopingCart;
+package OnlineShoppingCart;
 
 public class CartItem {
     private int quantity;
