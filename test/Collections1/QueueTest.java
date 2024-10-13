@@ -34,7 +34,7 @@ public class QueueTest {
     }
 
     @Test
-    public void testAddXYRemoveYCheckIfQueueIsNotEmpty() {
+    public void testAddXYRemoveXCheckIfQueueIsNotEmpty() {
         assertTrue(queue.isEmpty());
         queue.add("Clinton");
         queue.add("David");
@@ -72,6 +72,15 @@ public class QueueTest {
     public void testRemoveFromEmptyQueue(){
         assertTrue(queue.isEmpty());
         assertThrows(IllegalStateException.class, () ->{queue.remove();});
+    }
+
+    @Test
+    public void testRemoveAnElementFromQueue(){
+        assertTrue(queue.isEmpty());
+        queue.add("Clinton");
+        queue.add("David");
+        queue.add("Ayoade");
+        assertEquals("Clinton", queue.remove());
     }
 
     @Test
