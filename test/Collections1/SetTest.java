@@ -37,7 +37,7 @@ class SetTest {
         assertTrue(set.isEmpty());
         assertTrue(set.add("Clinton"));
         assertTrue(set.add("David"));
-        assertTrue(set.remove("Clinton"));
+        assertTrue(set.remove("David"));
         assertFalse(set.isEmpty());
     }
 
