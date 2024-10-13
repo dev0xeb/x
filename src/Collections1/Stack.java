@@ -4,7 +4,6 @@ public class Stack {
     private String[] elements;
     private int size;
     private final int capacity = 3;
-    private boolean isFull;
 
     public Stack() {
         elements = new String[capacity];

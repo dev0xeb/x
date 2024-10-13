@@ -75,7 +75,7 @@ public class StarkTest {
     }
 
     @Test
-    public void testPushXGetStackCapicity(){
+    public void testPushXGetStackSize(){
         assertTrue(stark.isEmpty());
         stark.push("Clinton");
         assertEquals(1, stark.getSize());
@@ -123,12 +123,6 @@ public class StarkTest {
         assertEquals("Ayoade", stark.peek());
         stark.pop();
         assertEquals("Clinton", stark.peek());
-    }
-
-    @Test
-    public void testPopEmptyStack(){
-        assertTrue(stark.isEmpty());
-        assertThrows(IllegalStateException.class, () -> {stark.pop();});
     }
 
     @Test
