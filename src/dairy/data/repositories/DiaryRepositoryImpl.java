@@ -6,17 +6,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DiaryRepositoryImpl implements DiaryRepository {
+    private int numberOfEntries;
     private static List<Diary> entries = new ArrayList<>();
 
     @Override
     public Diary save(Diary diary) {
         entries.add(diary);
+        numberOfEntries++;
         return diary;
     }
 
     @Override
     public List<Diary> findByTitle(String title) {
-        return List.of();
+        return null;
     }
 
     @Override
@@ -31,11 +33,16 @@ public class DiaryRepositoryImpl implements DiaryRepository {
 
     @Override
     public long count() {
-        return entries.size();
+        return numberOfEntries;
     }
 
     @Override
-    public Diary findById() {
+    public Diary findById(String username) {
+        for(Diary diary : entries) {
+            if(diary.getUsername().equals(username)) {
+                return diary;
+            }
+        }
         return null;
     }
 }
