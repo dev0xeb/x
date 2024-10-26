@@ -7,11 +7,11 @@ import java.util.List;
 
 public class DiaryRepositoryImpl implements DiaryRepository {
     private int numberOfEntries;
-    private static List<Diary> entries = new ArrayList<>();
+    private static List<Diary> diaries = new ArrayList<>();
 
     @Override
     public Diary save(Diary diary) {
-        entries.add(diary);
+        diaries.add(diary);
         numberOfEntries++;
         return diary;
     }
@@ -27,8 +27,13 @@ public class DiaryRepositoryImpl implements DiaryRepository {
     }
 
     @Override
-    public void delete(Diary diary) {
-
+    public void delete(Diary username) {
+        for (int index = 0; index < diaries.size(); index++) {
+            if(diaries.get(index).equals(username)) {
+                diaries.remove(index);
+            }
+        }
+        numberOfEntries--;
     }
 
     @Override
@@ -38,7 +43,7 @@ public class DiaryRepositoryImpl implements DiaryRepository {
 
     @Override
     public Diary findById(String username) {
-        for(Diary diary : entries) {
+        for(Diary diary : diaries) {
             if(diary.getUsername().equals(username)) {
                 return diary;
             }

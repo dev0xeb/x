@@ -7,6 +7,15 @@ public class Diary {
     private String username;
     private String password;
     private boolean isLocked;
+    private List<Entry> entries = new ArrayList<>();
+
+    public Diary(){
+
+    }
+    public Diary(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
 
     public List<Entry> getEntries() {
         return entries;
@@ -40,5 +49,8 @@ public class Diary {
         this.username = username;
     }
 
-    private List<Entry> entries = new ArrayList<>();
+    @Override
+    public String toString() {
+        return "username: " + username;
+    }
 }
