@@ -17,13 +17,13 @@ public class Diary {
         this.password = password;
     }
 
-    public List<Entry> getEntries() {
-        return entries;
-    }
-
-    public void setEntries(List<Entry> entries) {
-        this.entries = entries;
-    }
+//    public List<Entry> getEntries() {
+//        return entries;
+//    }
+//
+//    public void setEntries(List<Entry> entries) {
+//        this.entries = entries;
+//    }
 
     public boolean isLocked() {
         return isLocked;

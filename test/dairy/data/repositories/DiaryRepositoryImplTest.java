@@ -1,83 +1,102 @@
 package dairy.data.repositories;
 
 import dairy.data.models.Diary;
+import dairy.data.models.Entry;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class DiaryRepositoryImplTest {
-   DiaryRepositoryImpl repository = new DiaryRepositoryImpl();
+    DiaryRepositoryImpl diaryRepository = new DiaryRepositoryImpl();
     @BeforeEach
     public void setUp() {
-        repository = new DiaryRepositoryImpl();
+        diaryRepository = new DiaryRepositoryImpl();
     }
 
     @Test
-    public void newRepositioryCountIsZero() {
-        assertEquals(0, repository.count());
-//        long result = diary.count();
-//        assertEquals(0, result);
+    public void testNewRepositoryIsEmpty() {
+        assertEquals(0, diaryRepository.count());
     }
 
     @Test
-    public void AddnewEntryRepositoryCountIsOne() {
-        assertEquals(0, repository.count());
-        repository.save(new Diary());
-        assertEquals(1, repository.count());
-    }
-
-    @Test
-    public void AddnewEntryRepositoryCountIsTwoFindById() {
+    public void testAddDiaryRepositoryIsNotEmpty() {
+        assertEquals(0, diaryRepository.count());
         Diary diary = new Diary("clinton", "password");
-       assertEquals(0, repository.count());
-       repository.save(diary);
-       assertEquals(1, repository.count());
-       Diary savedDiary = repository.findById("clinton");
-       assertEquals("clinton", savedDiary.getUsername());
+        diaryRepository.save(diary);
+        assertEquals(1, diaryRepository.count());
     }
 
     @Test
-    public void iAddTwoEntriesToRepository_RepositoryHasTwoEntries_test(){
+    public void testAdd2DiaryRepositoryIsNotEmpty() {
+        assertEquals(0, diaryRepository.count());
         Diary diary = new Diary("clinton", "password");
-        repository.save(diary);
-        Diary diary1 = new Diary("clinton2", "password");
-        repository.save(diary1);
-        assertEquals(2, repository.count());
+        diaryRepository.save(diary);
+        Diary diary2 = new Diary("david", "password");
+        diaryRepository.save(diary2);
+        assertEquals(2, diaryRepository.count());
     }
 
     @Test
-    public void iAddTwoEntriesToRepository_iDeleteOne_repositoryIsNotEmpty_test(){
+    public void testAdd2RepositoryDelete1RepositoryIsNotEmpty() {
+        assertEquals(0, diaryRepository.count());
         Diary diary = new Diary("clinton", "password");
-        repository.save(diary);
-        Diary diary1 = new Diary("clinton2", "password");
-        repository.save(diary1);
-        assertEquals(2, repository.count());
-        repository.delete(diary1);
-        assertEquals(1, repository.count());
+        diaryRepository.save(diary);
+        Diary diary2 = new Diary("david", "password");
+        diaryRepository.save(diary2);
+        assertEquals(2, diaryRepository.count());
+        diaryRepository.delete(diary2);
+        assertEquals(1, diaryRepository.count());
     }
 
     @Test
-    public void i_canSearchEntriesById(){
+    public void testSearchForDeletedDiary() {
+        assertEquals(0, diaryRepository.count());
         Diary diary = new Diary("clinton", "password");
-        repository.save(diary);
-        Diary diary1 = new Diary("clinton2", "password");
-        repository.save(diary1);
-        assertEquals(2, repository.count());
-        Diary newDiary = repository.findById("clinton2");
-        System.out.println(newDiary);
-        assertEquals(newDiary, diary1);
+        diaryRepository.save(diary);
+        Diary diary2 = new Diary("david", "password");
+        diaryRepository.save(diary2);
+        assertEquals(2, diaryRepository.count());
+        diaryRepository.delete(diary2);
+        assertEquals(1, diaryRepository.count());
+        assertNull(diaryRepository.findById("david"));
     }
 
     @Test
-    public void i_CanDeleteExistingRepository_fromDiary(){
-        assertEquals(0, repository.count());
+    public void DiaryCanGetRepositoryUsername() {
+        assertEquals(0, diaryRepository.count());
         Diary diary = new Diary("clinton", "password");
-        repository.save(diary);
-        Diary diary1 = new Diary("clinton2", "password");
-        repository.save(diary1);
-        assertEquals(2, repository.count());
-        repository.delete(diary);
-        assertEquals(1, repository.count());
+        diaryRepository.save(diary);
+        Diary diary2 = new Diary("david", "password");
+        diaryRepository.save(diary2);
+        assertEquals(2, diaryRepository.count());
+        assertEquals("david", diary2.getUsername());
+        assertEquals("clinton", diary.getUsername());
+    }
+
+    @Test
+    public void testSearchEntryById(){
+        assertEquals(0, diaryRepository.count());
+        Diary diary = new Diary("clinton", "password");
+        diaryRepository.save(diary);
+        Diary diary2 = new Diary("david", "password");
+        diaryRepository.save(diary2);
+        assertEquals(2, diaryRepository.count());
+        assertEquals("david", diary2.getUsername());
+    }
+
+//    @Test
+//    public void testDeleteById(){
+//        assertEquals(0, diaryRepository.count());
+//        Diary diary = new Diary("clinton", "password");
+//
+//    }
+
+    @Test
+    public void testForNonExistentDiary() {
+        assertEquals(0, diaryRepository.count());
+        Diary diary = new Diary("clinton", "password");
+        diaryRepository.save(diary);
+        assertNull(diaryRepository.findById("veekee"));
     }
 }

@@ -4,9 +4,21 @@ import java.time.LocalDateTime;
 
 public class Entry {
     private int id;
+    private String diaryId;
     private String title;
     private String body;
-    private LocalDateTime localDate = LocalDateTime.now();
+    private LocalDateTime dateCreated;
+
+    public Entry() {
+
+    }
+    public Entry(int id, String title, String body) {
+        this.id = id;
+        this.title = title;
+        this.body = body;
+        this.dateCreated = LocalDateTime.now();
+        this.diaryId = diaryId;
+    }
 
     public int getId() {
         return id;
@@ -33,12 +45,18 @@ public class Entry {
     }
 
     public LocalDateTime getLocalDate() {
-        return localDate;
+        return dateCreated;
     }
 
-    public void setLocalDate(LocalDateTime localDate) {
-        this.localDate = localDate;
+    public void setLocalDate(LocalDateTime dateCreated) {
+        this.dateCreated = this.dateCreated;
+    }
+    public String getDiaryId() {
+        return diaryId;
     }
 
+    public void setDiaryId(String diaryId) {
+        this.diaryId = diaryId;
+    }
 
 }
