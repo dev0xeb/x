@@ -1,7 +1,6 @@
 package dairy.data.repositories;
 
 import dairy.data.models.Diary;
-import dairy.data.models.Entry;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
 
@@ -45,7 +44,7 @@ public class DiaryRepositoryImplTest {
         Diary diary2 = new Diary("david", "password");
         diaryRepository.save(diary2);
         assertEquals(2, diaryRepository.count());
-        diaryRepository.delete(diary2);
+        diaryRepository.deleteById(diary2);
         assertEquals(1, diaryRepository.count());
     }
 
@@ -57,7 +56,7 @@ public class DiaryRepositoryImplTest {
         Diary diary2 = new Diary("david", "password");
         diaryRepository.save(diary2);
         assertEquals(2, diaryRepository.count());
-        diaryRepository.delete(diary2);
+        diaryRepository.deleteById(diary2);
         assertEquals(1, diaryRepository.count());
         assertNull(diaryRepository.findById("david"));
     }
@@ -98,5 +97,27 @@ public class DiaryRepositoryImplTest {
         Diary diary = new Diary("clinton", "password");
         diaryRepository.save(diary);
         assertNull(diaryRepository.findById("veekee"));
+    }
+
+    @Test
+    public void testDeleteAll(){
+        assertEquals(0, diaryRepository.count());
+        Diary diary = new Diary("clinton", "password");
+        diaryRepository.save(diary);
+        Diary diary2 = new Diary("david", "password");
+        diaryRepository.save(diary2);
+        assertEquals(2, diaryRepository.count());
+        diaryRepository.deleteAll();
+        assertEquals(0, diaryRepository.count());
+    }
+
+    @Test
+    public void testIfRepositoryExistFindById(){
+        assertEquals(0, diaryRepository.count());
+        Diary diary = new Diary("clinton", "password");
+        diaryRepository.save(diary);
+        Diary diary1 = new Diary("mate", "password");
+        diaryRepository.save(diary1);
+        assertTrue(diaryRepository.existsById("clinton"));
     }
 }

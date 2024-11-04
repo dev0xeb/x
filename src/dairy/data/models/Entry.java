@@ -9,10 +9,7 @@ public class Entry {
     private String body;
     private LocalDateTime dateCreated;
 
-    public Entry() {
-
-    }
-    public Entry(int id, String title, String body) {
+    public Entry(String diaryId, int id, String title, String body) {
         this.id = id;
         this.title = title;
         this.body = body;

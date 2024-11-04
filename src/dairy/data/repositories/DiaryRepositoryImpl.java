@@ -7,7 +7,6 @@ import java.util.List;
 
 public class DiaryRepositoryImpl implements DiaryRepository {
     private List<Diary> diaries;
-    private int count;
 
     public DiaryRepositoryImpl() {
         this.diaries = new ArrayList<Diary>();
@@ -15,7 +14,7 @@ public class DiaryRepositoryImpl implements DiaryRepository {
     @Override
     public void save(Diary diary) {
         diaries.add(diary);
-        count++;
+        diaries.size();
     }
 
     @Override
@@ -24,30 +23,38 @@ public class DiaryRepositoryImpl implements DiaryRepository {
     }
 
     @Override
-    public void delete(Diary diary) {
+    public void deleteById(Diary diary) {
         for(int index = 0; index < diaries.size(); index++) {
             Diary currentDiary = diaries.get(index);
             if (currentDiary.getUsername().equals(diary.getUsername())) {
                 diaries.remove(index);
-                count--;
             }
         }
     }
 
     @Override
-    public void delete(String id) {
+    public void deleteById(String id) {
         for(int index = 0; index < diaries.size(); index++) {
             Diary currentDiary = diaries.get(index);
             if(currentDiary.getUsername().equals(id)) {
                 diaries.remove(index);
-                count--;
             }
         }
     }
 
     @Override
+    public boolean existsById(String id) {
+        for (Diary currentDiary : diaries) {
+            if (currentDiary.getUsername().equals(id)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
     public long count() {
-        return count;
+        return diaries.size();
     }
 
     @Override
@@ -58,5 +65,10 @@ public class DiaryRepositoryImpl implements DiaryRepository {
             }
         }
         return null;
+    }
+
+    @Override
+    public void deleteAll() {
+        diaries.clear();
     }
 }
